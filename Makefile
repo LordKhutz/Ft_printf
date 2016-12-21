@@ -2,8 +2,8 @@ NAME = libftprintf.a
 HEADER =./includes/
 FLAG = -Wall -Wextra -Werror -c
 OPTION = -I./includes
-PATH_SRC = ./src/
-LIBFT_SRC = ./libft/src/
+PATH_SRC = ./srcs/
+LIBFT_SRC = ./libft/srcs/
 
 SRC = $(PATH_SRC)ft_handle_base.c $(PATH_SRC)ft_handle_chars.c \
 $(PATH_SRC)ft_handle_len.c $(PATH_SRC)ft_handle_num.c \

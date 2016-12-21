@@ -2,7 +2,7 @@ NAME = libft.a
 HEADER = ./includes/
 FLAG = -Wall -Wextra -Werror
 OPTION = -c -I $(HEADER)
-LIBFT_SRC = ./src/
+LIBFT_SRC = ./srcs/
 
 SRC = $(LIBFT_SRC)ft_memset.c $(LIBFT_SRC)ft_strcpy.c $(LIBFT_SRC)ft_bzero.c \
  $(LIBFT_SRC)ft_memmove.c $(LIBFT_SRC)ft_memchr.c $(LIBFT_SRC)ft_memcmp.c \
