@@ -3,7 +3,7 @@
 
 int	main(void)
 {
-	ft_printf("%s\n", "hallo World");
-	printf("%s\n", "|dffdf");
+	printf("%d\n", ft_printf("%jx\n",4294967295));
+	printf("%d\n", printf("%jx", 4294967295));
 	return (0);
 }

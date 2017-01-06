@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static char		*check_others(va_list argp, char format)
+static char		*check_others(va_list argp, char format, t_printret *ret)
 {
 	char	*str;
 	long	num;
@@ -22,7 +22,7 @@ static char		*check_others(va_list argp, char format)
 	if (format == 'O')
 	{
 		num = va_arg(argp, long);
-		base_l(num, format, 8);
+		base_l(num, format, 8, ret);
 	}
 	if (format == 'U')
 	{
@@ -43,7 +43,7 @@ static void		display_num(char *str, int pos_num, int di, int num)
 		ft_putstr(str);
 }
 
-void			handle_num(va_list argp, char format, int pos_num)
+int				handle_num(va_list argp, char format, int pos_num, t_printret *ret)
 {
 	char	*str;
 	long	num;
@@ -64,6 +64,7 @@ void			handle_num(va_list argp, char format, int pos_num)
 		str = ft_itoa(num);
 	}
 	else
-		str = check_others(argp, format);
+		str = check_others(argp, format, ret);
 	display_num(str, pos_num, di, num);
+	return (ft_strlen(str));
 }

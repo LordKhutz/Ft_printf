@@ -12,12 +12,12 @@
 
 #include "ft_printf.h"
 
-void	pointer_s(va_list argp, char format)
+void	pointer_s(va_list argp, char format, t_printret *ret)
 {
 	if (format == 'p')
 	{
 		ft_putstr("0x");
-		base_l((unsigned long)va_arg(argp, long), format, 16);
+		base_l((unsigned long)va_arg(argp, long), format, 16, ret);
 	}
 }
 

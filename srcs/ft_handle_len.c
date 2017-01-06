@@ -15,15 +15,15 @@
 static void	handle_l(char format, va_list argp)
 {
 	if (format == 'd' || format == 'i')
-		ft_printf("%D\n", va_arg(argp, long));
+		ft_printf("%D", va_arg(argp, long));
 	if (format == 'o')
-		ft_printf("%o\n", (unsigned long)va_arg(argp, long));
+		ft_printf("%o", (unsigned long)va_arg(argp, long));
 	if (format == 'u')
-		ft_printf("%u\n", (unsigned long)va_arg(argp, long));
+		ft_printf("%u", (unsigned long)va_arg(argp, long));
 	if (format == 'x')
-		ft_printf("%x\n", (unsigned long)va_arg(argp, long));
+		ft_printf("%x", (unsigned long)va_arg(argp, long));
 	if (format == 'X')
-		ft_printf("%X\n", (unsigned long)va_arg(argp, long));
+		ft_printf("%X", (unsigned long)va_arg(argp, long));
 }
 
 int			jz(const char *format, va_list argp)

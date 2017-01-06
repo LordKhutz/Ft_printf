@@ -36,8 +36,7 @@ SRC += $(LIBFT_SRC)ft_memset.c $(LIBFT_SRC)ft_strcpy.c $(LIBFT_SRC)ft_bzero.c \
 OBJ = ft_handle_base.o ft_handle_chars.o \
 ft_handle_len.o ft_handle_num.o ft_misc_1.o \
 ft_misc_2.o ft_pointers.o ft_printf.o \
-
-OBJ += ft_memset.o ft_strcpy.o ft_bzero.o \
+ ft_memset.o ft_strcpy.o ft_bzero.o \
  ft_memmove.o ft_memchr.o ft_memcmp.o \
  ft_strlen.o  ft_strdup.o ft_strncpy.o \
  ft_strcat.o ft_strncat.o ft_strlcat.o \

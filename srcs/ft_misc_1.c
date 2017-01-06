@@ -12,10 +12,14 @@
 
 #include "ft_printf.h"
 
-void		double_percent(char format)
+int		double_percent(char format)
 {
 	if (format == '%')
+	{
 		ft_putchar('%');
+		return (1);
+	}
+	return (0);
 }
 
 void		handle_hashtag(char format)
@@ -52,19 +56,26 @@ static void	do_some_other_stuff(char *str, int *n, char format, va_list argp)
 	}
 }
 
-static void	do_some_display(int i, int j, char *str, char format)
+static void	do_some_display(int i, int j, char *str, char format, t_printret *ret)
 {
 	while (i-- > 0)
+	{
 		ft_putchar(' ');
+		ret->returnvalue += 1;
+	}
 	if (j == 1)
 	{
+		ret->returnvalue += ft_strlen(str);
 		ft_printf("%s", str);
 		if (format == '\n')
+		{
 			ft_printf("%c", '\n');
+			ret->returnvalue += 1;
+		}
 	}
 }
 
-int			handle_padding(const char *format, va_list argp)
+int			handle_padding(const char *format, va_list argp, t_printret *ret)
 {
 	char	*str;
 	int		n[5];
@@ -84,6 +95,6 @@ int			handle_padding(const char *format, va_list argp)
 	free(str);
 	str = (char *)malloc(n[0]);
 	do_some_other_stuff(str, &*n, *format, argp);
-	do_some_display(n[0], n[4], str, *++format);
+	do_some_display(n[0], n[4], str, *++format, ret);
 	return (n[2] + n[4]);
 }
