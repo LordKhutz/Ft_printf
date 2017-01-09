@@ -22,14 +22,23 @@ int		double_percent(char format)
 	return (0);
 }
 
-void		handle_hashtag(char format)
+void		handle_hashtag(char format, t_printret *rt)
 {
 	if (format == 'X')
+	{
 		ft_putstr("0X");
+		rt->returnvalue += 2;
+	}
 	if (format == 'x')
+	{
 		ft_putstr("0x");
+		rt->returnvalue += 2;
+	}
 	if (format == 'o')
+	{
 		ft_putchar('0');
+		rt->returnvalue += 1;
+	}
 }
 
 static void	do_some_other_stuff(char *str, int *n, char format, va_list argp)

@@ -47,9 +47,9 @@ static int	conversions(char *format, va_list argp, int pos_num, t_printret *rt)
 	if (*format == '#')
 	{
 		i += 1;
-		handle_hashtag(*++format);
+		handle_hashtag(*++format, rt);
 	}
-	i += handle_length(format, argp);
+	i += handle_length(format, argp, rt);
 	return (i);
 }
 
@@ -76,8 +76,8 @@ int			ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format += 1;
-			ret->returnvalue += handle_num(argp, *format, pos_num, ret);
 			format += conversions((char *)format, argp, pos_num, ret);
+			ret->returnvalue += handle_num(argp, *format, pos_num, ret);	
 			pointer_s(argp, *format, ret);
 			base_change(argp, *format, ret);
 			if (double_percent(*format))

@@ -20,8 +20,17 @@ void	print_string(va_list argp, char format, t_printret *ret)
 	if (format == 's')
 	{
 		str = va_arg(argp, char *);
-		ret->returnvalue += ft_strlen(str);
 		ft_putstr(str);
+		ret->returnvalue += ft_strlen(str);
+	}
+	if (format == 'S')
+	{
+		w_s = va_arg(argp, int *);
+		while (*w_s)
+		{
+			ft_putchar((char)*w_s++);
+			ret->returnvalue += 1;
+		}
 	}
 	if (format == 'c')
 	{
@@ -32,14 +41,5 @@ void	print_string(va_list argp, char format, t_printret *ret)
 	{
 		ft_putchar((char)va_arg(argp, wchar_t));
 		ret->returnvalue += 1;
-	}
-	if (format == 'S')
-	{
-		w_s = va_arg(argp, int *);
-		while (*w_s)
-		{
-			ft_putchar((char)*w_s++);
-			ret->returnvalue += 1;
-		}
 	}
 }

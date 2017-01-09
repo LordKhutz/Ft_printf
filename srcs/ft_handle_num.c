@@ -63,6 +63,18 @@ int				handle_num(va_list argp, char format, int pos_num, t_printret *ret)
 		num = va_arg(argp, long);
 		str = ft_itoa(num);
 	}
+	else if (format == 'u')
+	{
+		di = 1;
+		num = va_arg(argp, unsigned int);
+		str = ft_itoa(num);
+	}
+	else if (format == 'U')
+	{
+		di = 1;
+		num = va_arg(argp, unsigned long);
+		str = ft_itoa(num);
+	}
 	else
 		str = check_others(argp, format, ret);
 	display_num(str, pos_num, di, num);
