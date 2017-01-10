@@ -20,7 +20,11 @@
 
 typedef struct	s_printret
 {
-	int         returnvalue;
+	int         chars_printed;
+	int			padding_num;
+	char		padding_type;
+	int			padding_justify;
+	char		*format;
 	char		*outvalue;
 }				t_printret;
 
