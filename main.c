@@ -3,7 +3,7 @@
 
 int	main(void)
 {
-	printf("%d\n", ft_printf("%d\n", 42));
-	printf("%d\n", printf("%+d\n", 42));
+	printf(" (%d)\n", ft_printf("%#X", 1));
+	printf(" (%d)\n", printf("%#X\n", 1));
 	return (0);
 }
