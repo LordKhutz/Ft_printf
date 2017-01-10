@@ -2,13 +2,11 @@ NAME = libftprintf.a
 HEADER =./includes/
 FLAG = -Wall -Wextra -Werror -c
 OPTION = -I./includes
-PATH_SRC = ./srcs/
+PATH_SRC = ./src/
 LIBFT_SRC = ./libft/srcs/
 
-SRC = $(PATH_SRC)ft_handle_base.c $(PATH_SRC)ft_handle_chars.c \
-$(PATH_SRC)ft_handle_len.c $(PATH_SRC)ft_handle_num.c \
-$(PATH_SRC)ft_misc_1.c $(PATH_SRC)ft_misc_2.c \
-$(PATH_SRC)ft_pointers.c $(PATH_SRC)ft_printf.c \
+SRC = $(PATH_SRC)ft_display.c $(PATH_SRC)ft_handle_str.c \
+$(PATH_SRC)ft_itoa_base.c $(PATH_SRC)ft_printf.c $(PATH_SRC)ft_handle_numb.c\
 
 SRC += $(LIBFT_SRC)ft_memset.c $(LIBFT_SRC)ft_strcpy.c $(LIBFT_SRC)ft_bzero.c \
  $(LIBFT_SRC)ft_memmove.c $(LIBFT_SRC)ft_memchr.c $(LIBFT_SRC)ft_memcmp.c \
@@ -33,9 +31,8 @@ SRC += $(LIBFT_SRC)ft_memset.c $(LIBFT_SRC)ft_strcpy.c $(LIBFT_SRC)ft_bzero.c \
  $(LIBFT_SRC)ft_strrev.c
 
 
-OBJ = ft_handle_base.o ft_handle_chars.o \
-ft_handle_len.o ft_handle_num.o ft_misc_1.o \
-ft_misc_2.o ft_pointers.o ft_printf.o \
+OBJ = ft_display.o ft_handle_str.o \
+ ft_itoa_base.o ft_printf.o ft_handle_numb.o\
  ft_memset.o ft_strcpy.o ft_bzero.o \
  ft_memmove.o ft_memchr.o ft_memcmp.o \
  ft_strlen.o  ft_strdup.o ft_strncpy.o \

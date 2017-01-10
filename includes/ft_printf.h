@@ -24,9 +24,17 @@ typedef struct	s_printret
 	int			padding_num;
 	char		padding_type;
 	int			padding_justify;
-	char		*format;
+	const char	*format;
+	int			format_num;
 	char		*outvalue;
+	int			outval_num;
+	int 		counter;
 }				t_printret;
 
-int		ft_printf(const char *format, ...);
+int		ft_printf(const char *frmt, ...);
+void	ft_display(t_printret	*ret);
+void	ft_handle_str(t_printret *ret, va_list argp);
+char	*ft_itoa_base(unsigned long numb, int base);
+void    ft_handle_numb(t_printret *ret, va_list argp);
+
 #endif
