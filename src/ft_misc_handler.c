@@ -1,10 +1,48 @@
 #include "ft_printf.h"
 
-void	ft_conversions(t_printret *ret)
+void	ft_conversions(t_printret *ret, va_list argp)
 {
+    int     i;
+    char    *digits;
+
+    i = 0;
     if (ret->format[ret->counter] == '#')
     {
         ret->hashable = 1;
+        ret->counter += 1;
+    }
+    if (ret->format[ret->counter] == '+')
+    {
+        ret->forcepositive = 1;
+        ret->counter += 1;
+    }
+    if (ret->format[ret->counter] == '-')
+    {
+        ret->padding_justify = -1;
+        ret->counter += 1;
+    }
+    if (ret->format[ret->counter] == '0')
+    {
+        ret->padding_type = 48;
+        ret->counter += 1;
+    }
+    if (ret->format[ret->counter] == ' ')
+    {
+        ret->padding_type = ' ';
+        ret->counter += 1;
+    }
+    if (ft_isdigit(ret->format[ret->counter]))
+    {
+        digits = (char *)malloc(2);
+        digits[0] = ret->format[ret->counter];
+        digits[1] = '\0';
+        //ft_putendl(digits);
+        ret->padding_num = ft_atoi(digits);
+        ret->counter += 1;
+    }
+     if (ret->format[ret->counter] == '*')
+    {
+        ret->padding_num = ft_atoi(digits);
         ret->counter += 1;
     }
 }

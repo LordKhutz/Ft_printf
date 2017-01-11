@@ -1,6 +1,6 @@
 NAME = libftprintf.a
 HEADER =./includes/
-FLAG = -Wall -Wextra -Werror -c
+FLAG = -c
 OPTION = -I./includes
 PATH_SRC = ./src/
 LIBFT_SRC = ./libft/srcs/
@@ -56,13 +56,13 @@ OBJ = ft_display.o ft_handle_str.o \
  ft_lstmap.o ft_strsplit.o ft_misc_handler.o
 
 all: $(NAME)
-    
+
 $(NAME):
 	@gcc $(FLAG) $(OPTION) $(SRC)
-	@ar rc $(NAME) $(OBJ) 
+	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@echo "\033[32mBuilt ft_printf library.\033[0m"
-	@mkdir ./obj 
+	@mkdir ./obj
 	@mv $(OBJ) ./obj/
 clean:
 	@/bin/rm -rf ./obj

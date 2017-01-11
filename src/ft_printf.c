@@ -8,7 +8,8 @@ t_printret	*ft_create(void)
 	create->chars_printed = 0;
 	create->padding_num = 0;
 	create->padding_type = ' ';
-	create->padding_justify = -1;
+	create->padding_justify = 0;
+	create->forcepositive = 0;
 	create->format_num = 0;
 	create->format = NULL;
 	create->outvalue = NULL;
@@ -19,6 +20,8 @@ t_printret	*ft_create(void)
 
 void	ft_inner_printf(t_printret	*ret, va_list argp)
 {
+    int i;
+
 	while (ret->format[ret->counter])
 	{
 		if (ret->format[ret->counter] == '%')
@@ -44,7 +47,7 @@ int			ft_printf(const char *frmt, ...)
 
 	va_start(argp, frmt);
 	ret = ft_create();
-	ret->format = frmt;
+	ret->format =  frmt;
 	ret->counter = 0;
 	ft_inner_printf(ret, argp);
 	return (ret->chars_printed);

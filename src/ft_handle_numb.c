@@ -4,15 +4,21 @@ char	*ft_assigner(t_printret	*ret, char *s)
 {
 	char	*helpvar;
 	int		i;
+	int     j;
 
 	i = 0;
+	j = 0;
 	helpvar = (char *)malloc(ft_strlen(ret->outvalue) + ft_strlen(s));
-	while (i < (ft_strlen(ret->outvalue) + ft_strlen(s))
+	while (i < (ft_strlen(ret->outvalue) + ft_strlen(s)))
 	{
-		helpvar[i] = ret->outvalue[i];
+	    while (j < ft_strlen(s))
+            helpvar[i++] = s[j++];
+        j = 0;
+        while (j < ft_strlen(ret->outvalue))
+            helpvar[i++] = ret->outvalue[j++];
 		i += 1;
 	}
-	helpvar[i] = '\0';
+	helpvar[i - 1] = '\0';
 	return (helpvar);
 }
 
@@ -35,8 +41,7 @@ void    ft_helper2(t_printret *ret, va_list argp)
 		ret->outvalue = ft_itoa_base(va_arg(argp, int), 16);
 		if (ret->outvalue[0] != 48 && ret->hashable == 1)
 		{
-			ft_putendl(ft_assigner(ret));
-			ret->outvalue  = ft_strjoin("0x", ft_assigner(ret));
+			ret->outvalue  = ft_assigner(ret,"0x");
 			ret->hashable = 0;
 		}
         while (i < ft_strlen(ret->outvalue))
@@ -51,8 +56,7 @@ void    ft_helper2(t_printret *ret, va_list argp)
 		ret->outvalue = ft_itoa_base(va_arg(argp, int), 16);
 		if (ret->outvalue[0] != 48 && ret->hashable == 1)
 		{
-			ft_putendl(ft_assigner(ret));
-			ret->outvalue  = ft_strjoin("0x", ft_assigner(ret));
+			ret->outvalue  = ft_assigner(ret,"0x");
 			ret->hashable = 0;
 		}
     }
@@ -61,8 +65,7 @@ void    ft_helper2(t_printret *ret, va_list argp)
 		ret->outvalue = ft_itoa_base(va_arg(argp, int), 8);
 		if (ret->outvalue[0] != 48 && ret->hashable == 1)
 		{
-			ft_putendl(ft_assigner(ret));
-			ret->outvalue  = ft_strjoin("0", ft_assigner(ret));
+			ret->outvalue  = ft_assigner(ret,"0");
 			ret->hashable = 0;
 		}
     }
@@ -97,6 +100,8 @@ void    ft_handle_numb(t_printret *ret, va_list argp)
 	{
 		num = va_arg(argp, int);
 		ret->outvalue = ft_itoa(num);
+		if (ret->forcepositive == 1 && num > 1)
+            ret->outvalue = ft_assigner(ret,"+");
 	}
 	else if (ret->format[ret->counter] == 'D')
 	{
@@ -107,6 +112,7 @@ void    ft_handle_numb(t_printret *ret, va_list argp)
         ft_helper1(ret, argp);
     if (ret->outvalue)
     	ft_display(ret);
+    ret->format += 1;
 	ret->outvalue = NULL;
 	ret->outval_num = 0;
 }
