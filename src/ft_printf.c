@@ -27,7 +27,7 @@ void	ft_inner_printf(t_printret	*ret, va_list argp)
 		if (ret->format[ret->counter] == '%')
 		{
 			ret->counter += 1;
-			ft_conversions(ret);
+			ft_conversions(ret, argp);
 			ft_handle_str(ret, argp);
 			ft_handle_numb(ret, argp);
 		}

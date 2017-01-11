@@ -111,7 +111,10 @@ void    ft_handle_numb(t_printret *ret, va_list argp)
 	else
         ft_helper1(ret, argp);
     if (ret->outvalue)
+    {
     	ft_display(ret);
+    	ret->isnumber = 1;
+    }
     ret->format += 1;
 	ret->outvalue = NULL;
 	ret->outval_num = 0;

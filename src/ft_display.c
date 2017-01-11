@@ -31,7 +31,8 @@ void	ft_rjf(t_printret *ret)
     i = 0;
 	if (ret->padding_num <= ret->outval_num)
 		{
-			ft_putstr(ret->outvalue);
+			while (i < ret->outval_num)
+                ft_putchar(ret->outvalue[i++]);
 			ret->chars_printed += ret->outval_num;
 		}
 	else
@@ -49,13 +50,25 @@ void	ft_rjf(t_printret *ret)
             ft_putchar(ret->padding_type);
 			ret->chars_printed += 1;
 		}
-		ft_putstr(s);
+		while (i < ret->outval_num)
+            ft_putchar(ret->outvalue[i++]);
 	}
 }
 
 void	ft_display(t_printret *ret)
 {
 	ret->outval_num = ft_strlen(ret->outvalue);
+	if (ret->isnumber = 1 && ret->precision > 0)
+    {
+        if (ret->precision > ret->outval_num)
+        {
+            ret->padding_type = '0';
+            ret->padding_num += ret->precision - ret->outval_num;
+        }
+    }
+    else if (ret->isnumber = 0 && ret->precision > -1)
+        if (ret->outval_num > ret->precision)
+            ret->outval_num = ret->precision;
 	if (ret->padding_justify == -1)
 		ft_ljf(ret);
 	else
