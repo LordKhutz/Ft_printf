@@ -13,6 +13,7 @@ t_printret	*ft_create(void)
 	create->format = NULL;
 	create->outvalue = NULL;
 	create->outval_num = 0;
+	create->hashable = 0;
 	return (create);
 }
 
@@ -23,6 +24,7 @@ void	ft_inner_printf(t_printret	*ret, va_list argp)
 		if (ret->format[ret->counter] == '%')
 		{
 			ret->counter += 1;
+			ft_conversions(ret);
 			ft_handle_str(ret, argp);
 			ft_handle_numb(ret, argp);
 		}

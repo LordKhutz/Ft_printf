@@ -1,13 +1,44 @@
 #include "ft_printf.h"
 
+char	*ft_assigner(t_printret	*ret, char *s)
+{
+	char	*helpvar;
+	int		i;
+
+	i = 0;
+	helpvar = (char *)malloc(ft_strlen(ret->outvalue) + ft_strlen(s));
+	while (i < (ft_strlen(ret->outvalue) + ft_strlen(s))
+	{
+		helpvar[i] = ret->outvalue[i];
+		i += 1;
+	}
+	helpvar[i] = '\0';
+	return (helpvar);
+}
+
+void	ft_helper3(t_printret *ret, va_list argp)
+{
+	if (ret->format[ret->counter] == 'p')
+	{
+		ret->outvalue = ft_strcat("0x",
+			ft_itoa_base((unsigned long)va_arg(argp, long), 16));
+	}
+}
+
 void    ft_helper2(t_printret *ret, va_list argp)
 {
     int     i;
-    
+
     i = 0;
     if (ret->format[ret->counter] == 'X')
     {
 		ret->outvalue = ft_itoa_base(va_arg(argp, int), 16);
+		if (ret->outvalue[0] != 48 && ret->hashable == 1)
+		{
+			ft_putendl(ft_assigner(ret));
+			ret->outvalue  = ft_strjoin("0x", ft_assigner(ret));
+			ret->hashable = 0;
+		}
         while (i < ft_strlen(ret->outvalue))
         {
             if (ft_isalpha(ret->outvalue[i]))
@@ -18,11 +49,25 @@ void    ft_helper2(t_printret *ret, va_list argp)
 	else if (ret->format[ret->counter] == 'x')
     {
 		ret->outvalue = ft_itoa_base(va_arg(argp, int), 16);
+		if (ret->outvalue[0] != 48 && ret->hashable == 1)
+		{
+			ft_putendl(ft_assigner(ret));
+			ret->outvalue  = ft_strjoin("0x", ft_assigner(ret));
+			ret->hashable = 0;
+		}
     }
 	else if (ret->format[ret->counter] == 'o')
     {
 		ret->outvalue = ft_itoa_base(va_arg(argp, int), 8);
+		if (ret->outvalue[0] != 48 && ret->hashable == 1)
+		{
+			ft_putendl(ft_assigner(ret));
+			ret->outvalue  = ft_strjoin("0", ft_assigner(ret));
+			ret->hashable = 0;
+		}
     }
+	else
+		ft_helper3(ret, argp);
 }
 
 void    ft_helper1(t_printret *ret, va_list argp)

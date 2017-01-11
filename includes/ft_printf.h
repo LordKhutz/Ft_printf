@@ -26,6 +26,7 @@ typedef struct	s_printret
 	int			padding_justify;
 	const char	*format;
 	int			format_num;
+	int			hashable;
 	char		*outvalue;
 	int			outval_num;
 	int 		counter;
@@ -36,5 +37,6 @@ void	ft_display(t_printret	*ret);
 void	ft_handle_str(t_printret *ret, va_list argp);
 char	*ft_itoa_base(unsigned long numb, int base);
 void    ft_handle_numb(t_printret *ret, va_list argp);
+void	ft_conversions(t_printret *ret);
 
 #endif
