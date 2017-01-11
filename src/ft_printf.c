@@ -11,6 +11,8 @@ t_printret	*ft_create(void)
 	create->padding_justify = 0;
 	create->forcepositive = 0;
 	create->format_num = 0;
+	create->precision = -1;
+	create->isnumber = 0;
 	create->format = NULL;
 	create->outvalue = NULL;
 	create->outval_num = 0;
