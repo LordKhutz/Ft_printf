@@ -32,6 +32,7 @@ void	ft_inner_printf(t_printret	*ret, va_list argp)
 			ft_conversions(ret, argp);
 			ft_handle_str(ret, argp);
 			ft_handle_numb(ret, argp);
+			ret->counter -= 1;
 		}
 		else
 		{
@@ -46,10 +47,18 @@ int			ft_printf(const char *frmt, ...)
 {
 	va_list		argp;
 	t_printret	*ret;
+	char 	*format;
 
 	va_start(argp, frmt);
 	ret = ft_create();
-	ret->format =  frmt;
+	format = (char *)malloc(ft_strlen(frmt) + 1);
+	while (frmt[ret->counter])
+	{
+		format[ret->counter] = frmt[ret->counter];
+		ret->counter += 1;
+	}
+	format[ret->counter] = '\0';
+	ret->format = format;
 	ret->counter = 0;
 	ft_inner_printf(ret, argp);
 	return (ret->chars_printed);

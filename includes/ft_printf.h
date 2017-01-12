@@ -38,7 +38,9 @@ typedef struct	s_printret
 int		ft_printf(const char *frmt, ...);
 void	ft_display(t_printret	*ret);
 void	ft_handle_str(t_printret *ret, va_list argp);
-char	*ft_itoa_base(unsigned long numb, int base);
+char	*ft_itoa_base(unsigned int numb, int base);
+char	*ft_itoa_basel(unsigned long numb, int base);
+char	*ft_ibase(long numb, int base);
 void    ft_handle_numb(t_printret *ret, va_list argp);
 void	ft_conversions(t_printret *ret, va_list argp);
 void	ft_precision(t_printret *ret, va_list argp);

@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-char	*ft_assigner(t_printret	*ret, char *s)
+void	ft_assigner(t_printret	*ret, char *s)
 {
 	char	*helpvar;
 	int		i;
@@ -19,15 +19,15 @@ char	*ft_assigner(t_printret	*ret, char *s)
 		i += 1;
 	}
 	helpvar[i - 1] = '\0';
-	return (helpvar);
+	ret->outvalue = helpvar;
 }
 
 void	ft_helper3(t_printret *ret, va_list argp)
 {
 	if (ret->format[ret->counter] == 'p')
 	{
-		ret->outvalue = ft_strcat("0x",
-			ft_itoa_base((unsigned long)va_arg(argp, long), 16));
+		ret->outvalue = ft_itoa_base((unsigned long)va_arg(argp, long), 16);
+		ft_assigner(ret, "0x");
 	}
 }
 
@@ -41,7 +41,7 @@ void    ft_helper2(t_printret *ret, va_list argp)
 		ret->outvalue = ft_itoa_base(va_arg(argp, int), 16);
 		if (ret->outvalue[0] != 48 && ret->hashable == 1)
 		{
-			ret->outvalue  = ft_assigner(ret,"0x");
+			ft_assigner(ret,"0x");
 			ret->hashable = 0;
 		}
         while (i < ft_strlen(ret->outvalue))
@@ -51,21 +51,21 @@ void    ft_helper2(t_printret *ret, va_list argp)
             i +=1;
         }
     }
-	else if (ret->format[ret->counter] == 'x')
+	if (ret->format[ret->counter] == 'x')
     {
 		ret->outvalue = ft_itoa_base(va_arg(argp, int), 16);
 		if (ret->outvalue[0] != 48 && ret->hashable == 1)
 		{
-			ret->outvalue  = ft_assigner(ret,"0x");
+			ft_assigner(ret,"0x");
 			ret->hashable = 0;
 		}
     }
-	else if (ret->format[ret->counter] == 'o')
+	if (ret->format[ret->counter] == 'o')
     {
 		ret->outvalue = ft_itoa_base(va_arg(argp, int), 8);
 		if (ret->outvalue[0] != 48 && ret->hashable == 1)
 		{
-			ret->outvalue  = ft_assigner(ret,"0");
+			ft_assigner(ret,"0");
 			ret->hashable = 0;
 		}
     }
@@ -98,24 +98,24 @@ void    ft_handle_numb(t_printret *ret, va_list argp)
 	num = 0;
 	if (ret->format[ret->counter] == 'd' || ret->format[ret->counter] == 'i')
 	{
-		num = va_arg(argp, int);
-		ret->outvalue = ft_itoa(num);
-		if (ret->forcepositive == 1 && num > 1)
-            ret->outvalue = ft_assigner(ret,"+");
+		ret->outvalue = ft_ibase(va_arg(argp, int), 10);
+		
+		if (ret->forcepositive == 1 && ft_atoi(ret->outvalue) > 1)
+		{
+            ft_assigner(ret, "+");
+			ret->forcepositive = 0;
+		}
 	}
 	else if (ret->format[ret->counter] == 'D')
-	{
-		num = va_arg(argp, long);
-		ret->outvalue = ft_itoa(num);
-	}
+		ret->outvalue = ft_ibase(va_arg(argp, long), 10);
 	else
         ft_helper1(ret, argp);
     if (ret->outvalue)
     {
     	ft_display(ret);
     	ret->isnumber = 1;
+		ret->format += 1;
     }
-    ret->format += 1;
 	ret->outvalue = NULL;
 	ret->outval_num = 0;
 }
