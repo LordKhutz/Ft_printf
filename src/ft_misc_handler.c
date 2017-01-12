@@ -6,6 +6,12 @@ void	ft_conversions(t_printret *ret, va_list argp)
     char    *digits;
 
     i = 0;
+    if (ret->format[ret->counter] == '%')
+    {
+        ret->counter += 1;
+        ret->outvalue = "%\0";
+        ft_display(ret);
+    }
     if (ret->format[ret->counter] == '#')
     {
         ret->hashable = 1;
@@ -31,8 +37,6 @@ void	ft_conversions(t_printret *ret, va_list argp)
         ret->padding_type = ' ';
         ret->counter += 1;
     }
-    if (ret->format[ret->counter] == '.' && !(ft_isalpha(ret->format[ret->counter])))
-        ft_precision(ret, argp);
     if (ft_isdigit(ret->format[ret->counter]) && !(ft_isalpha(ret->format[ret->counter])))
     {
         
@@ -52,12 +56,7 @@ void	ft_conversions(t_printret *ret, va_list argp)
         digits[i] = '\0';
         ret->padding_num = ft_atoi(digits);
     }
-     if (ret->format[ret->counter] == '*')
-    {
-        ret->padding_num = ft_atoi(digits);
-        ret->counter += 1;
-    }
-    else
+    if (ret->format[ret->counter] == '.' && !(ft_isalpha(ret->format[ret->counter])))
         ft_precision(ret, argp);
 }
 
@@ -87,12 +86,7 @@ void	ft_precision(t_printret *ret, va_list argp)
         if (ret->precision == 0)
          ret->precision = -1;
     }
-   // else  if (ret->format[ret->counter] == '*')
-    //{
-      //  ret->precision = ft_atoi(digits);
-       // ret->counter += 1;
-    //}
-   // else
+    //else
     //{
       //  ret->precision = -1;
        // ret->counter += 1;

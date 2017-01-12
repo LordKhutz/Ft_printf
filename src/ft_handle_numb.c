@@ -81,6 +81,8 @@ void    ft_helper1(t_printret *ret, va_list argp)
 	{
 		num = va_arg(argp, unsigned int);
 		ret->outvalue = ft_itoa(num);
+		if (ft_strlen(ret->outvalue) < 1)
+		ret->outvalue = "0\0";
 	}
 	else if (ret->format[ret->counter] == 'U')
 	{
