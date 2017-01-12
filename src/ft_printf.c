@@ -11,7 +11,7 @@ t_printret	*ft_create(void)
 	create->padding_justify = 0;
 	create->forcepositive = 0;
 	create->format_num = 0;
-	create->precision = -1;
+	create->precision = -2;
 	create->isnumber = 0;
 	create->format = NULL;
 	create->outvalue = NULL;
@@ -31,6 +31,7 @@ void	ft_inner_printf(t_printret	*ret, va_list argp)
 			ret->counter += 1;
 			ft_conversions(ret, argp);
 			ft_handle_str(ret, argp);
+			handle_length(argp, ret);
 			ft_handle_numb(ret, argp);
 			ret->counter -= 1;
 		}

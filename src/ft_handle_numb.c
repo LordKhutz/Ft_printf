@@ -26,7 +26,7 @@ void	ft_helper3(t_printret *ret, va_list argp)
 {
 	if (ret->format[ret->counter] == 'p')
 	{
-		ret->outvalue = ft_itoa_base((unsigned long)va_arg(argp, long), 16);
+		ret->outvalue = ft_itoa_basel((unsigned long long)va_arg(argp, long), 16);
 		ft_assigner(ret, "0x");
 	}
 }
@@ -112,9 +112,14 @@ void    ft_handle_numb(t_printret *ret, va_list argp)
         ft_helper1(ret, argp);
     if (ret->outvalue)
     {
-    	ft_display(ret);
-    	ret->isnumber = 1;
-		ret->format += 1;
+		if (!(ret->precision == -1 && ft_atoi(ret->outvalue)  == 0))
+		{
+    		ft_display(ret);
+    		ret->isnumber = 1;
+			ret->format += 1;
+		}
+		else
+			ret->format += 1;
     }
 	ret->outvalue = NULL;
 	ret->outval_num = 0;

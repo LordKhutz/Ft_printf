@@ -7,7 +7,8 @@ LIBFT_SRC = ./libft/srcs/
 
 SRC = $(PATH_SRC)ft_display.c $(PATH_SRC)ft_handle_str.c \
 $(PATH_SRC)ft_itoa_base.c $(PATH_SRC)ft_printf.c $(PATH_SRC)ft_handle_numb.c\
-$(PATH_SRC)ft_misc_handler.c
+$(PATH_SRC)ft_misc_handler.c $(PATH_SRC)ft_handle_len.c \
+$(PATH_SRC)ft_handle_numb_short.c
 
 SRC += $(LIBFT_SRC)ft_memset.c $(LIBFT_SRC)ft_strcpy.c $(LIBFT_SRC)ft_bzero.c \
  $(LIBFT_SRC)ft_memmove.c $(LIBFT_SRC)ft_memchr.c $(LIBFT_SRC)ft_memcmp.c \
@@ -53,7 +54,8 @@ OBJ = ft_display.o ft_handle_str.o \
  ft_strnequ.o ft_strrchr.o ft_strsub.o \
  ft_strtrim.o ft_lstadd.o ft_lstdel.o \
  ft_lstdelone.o ft_lstnew.o ft_lstiter.o \
- ft_lstmap.o ft_strsplit.o ft_misc_handler.o
+ ft_lstmap.o ft_strsplit.o ft_misc_handler.o \
+ ft_handle_len.o ft_handle_numb_short.o
 
 all: $(NAME)
 

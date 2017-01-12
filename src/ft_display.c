@@ -66,4 +66,5 @@ void	ft_display(t_printret *ret)
 		ft_ljf(ret);
 	else
 		ft_rjf(ret);
+	ret->precision = -2;
 }

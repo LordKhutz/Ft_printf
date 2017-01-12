@@ -20,6 +20,7 @@ void	ft_wide_chars(t_printret *ret, va_list argp)
 		onechar[1] = '\0';
 		ret->outvalue = onechar;
 		ret->outval_num = ft_strlen(ret->outvalue);
+		ret->counter += 1;
 	}
 }
 
@@ -31,6 +32,7 @@ void	ft_handle_str(t_printret *ret, va_list argp)
 	{
 		ret->outvalue = va_arg(argp, char *);
 		ret->outval_num = ft_strlen(ret->outvalue);
+		ret->counter += 1;
 	}
 	else if (ret->format[ret->counter] == 'c')
 	{
@@ -38,6 +40,7 @@ void	ft_handle_str(t_printret *ret, va_list argp)
 		onechar[1] = '\0';
 		ret->outvalue = onechar;
 		ret->outval_num = ft_strlen(ret->outvalue);
+		ret->counter += 1;
 	}
 	else
 		ft_wide_chars(ret, argp);

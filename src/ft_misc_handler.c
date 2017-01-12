@@ -31,7 +31,7 @@ void	ft_conversions(t_printret *ret, va_list argp)
         ret->padding_type = ' ';
         ret->counter += 1;
     }
-    if (ret->format[ret->counter] == '.')
+    if (ret->format[ret->counter] == '.' && !(ft_isalpha(ret->format[ret->counter])))
         ft_precision(ret, argp);
     if (ft_isdigit(ret->format[ret->counter]) && !(ft_isalpha(ret->format[ret->counter])))
     {
@@ -57,25 +57,44 @@ void	ft_conversions(t_printret *ret, va_list argp)
         ret->padding_num = ft_atoi(digits);
         ret->counter += 1;
     }
+    else
+        ft_precision(ret, argp);
 }
 
 void	ft_precision(t_printret *ret, va_list argp)
 {
     char    *digits;
+    int     i;
 
-    if (ft_isdigit(ret->format[ret->counter]))
+    i = 0;
+    if (ft_isdigit(ret->format[ret->counter]) && !(ft_isalpha(ret->format[ret->counter])))
     {
-        digits = (char *)malloc(2);
-        digits[0] = ret->format[ret->counter];
-        digits[1] = '\0';
+        while (ft_isdigit(ret->format[ret->counter]) && !(ft_isalpha(ret->format[ret->counter])))
+        {
+            i += 1;
+            ret->counter += 1;
+        }
+        ret->counter -= i;
+        digits = (char *)malloc(i);
+        i = 0;
+        while (ft_isdigit(ret->format[ret->counter]) && !(ft_isalpha(ret->format[ret->counter])))
+        {
+            digits[i++] = ret->format[ret->counter];
+            ret->counter += 1;
+        }
+        digits[i] = '\0';
         ret->precision = ft_atoi(digits);
-        ret->counter += 1;
+        if (ret->precision == 0)
+         ret->precision = -1;
     }
    // else  if (ret->format[ret->counter] == '*')
     //{
       //  ret->precision = ft_atoi(digits);
        // ret->counter += 1;
     //}
-    else
-        ret->precision = -1;
+   // else
+    //{
+      //  ret->precision = -1;
+       // ret->counter += 1;
+    //}
 }
