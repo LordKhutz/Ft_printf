@@ -4,13 +4,18 @@ void	ft_conversions(t_printret *ret, va_list argp)
 {
     int     i;
     char    *digits;
-
+    char    prsnt[2];
     i = 0;
     if (ret->format[ret->counter] == '%')
     {
-        ret->counter += 1;
-        ret->outvalue = "%\0";
+        prsnt[0] = (char)37;
+		prsnt[1] = '\0';
+		ret->outvalue = prsnt;
+		ret->outval_num = ft_strlen(ret->outvalue);
+		ret->counter += 1;
         ft_display(ret);
+        ret->outvalue = NULL;
+        ret->outval_num = 0;
     }
     if (ret->format[ret->counter] == '#')
     {

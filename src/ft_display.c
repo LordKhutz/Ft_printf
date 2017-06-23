@@ -50,7 +50,7 @@ void	ft_rjf(t_printret *ret)
 
 void	ft_display(t_printret *ret)
 {
-	ret->outval_num = ft_strlen(ret->outvalue);
+	//ret->outval_num = ft_strlen(ret->outvalue);
 	if (ret->isnumber == 1 && ret->precision > 0)
 	{
 		if (ret->precision > ret->outval_num)
