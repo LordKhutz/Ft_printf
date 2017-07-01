@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "libft.h"
+#include <libc.h>
 
 typedef struct	s_printret
 {

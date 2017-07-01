@@ -91,6 +91,7 @@ void	ft_precision(t_printret *ret, va_list argp)
         if (ret->precision == 0)
          ret->precision = -1;
     }
+    free(digits);
     //else
     //{
       //  ret->precision = -1;

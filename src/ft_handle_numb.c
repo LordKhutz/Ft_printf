@@ -19,6 +19,7 @@ void	ft_assigner(t_printret	*ret, char *s)
 		i += 1;
 	}
 	helpvar[i - 1] = '\0';
+	free(helpvar);
 	ret->outvalue = helpvar;
 }
 

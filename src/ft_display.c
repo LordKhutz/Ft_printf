@@ -29,6 +29,7 @@ void	ft_rjf(t_printret *ret)
 	char    *s;
 
 	i = 0;
+	ret->outval_num = ft_strlen(ret->outvalue);
 	if (ret->padding_num <= ret->outval_num)
 	{
 		while (i < ret->outval_num)
@@ -40,8 +41,12 @@ void	ft_rjf(t_printret *ret)
 		s = ret->outvalue;
 		if (ret->padding_type == 48 && (*s == '-' || *s == '+'))
 			ft_putchar(*s++);
+		if ((*s == '0' && *(s + 1) == 'x') || (*s == '0' && *(s + 1) == 'X')){
+			ft_putchar(*s++);
+			ft_putchar(*s++);
+		}
 		ret->padding_num -= ret->outval_num;
-		ret->chars_printed += ret->padding_num+ ret->outval_num;
+		ret->chars_printed += ret->padding_num + ret->outval_num;
 		while (ret->padding_num--)
 			ft_putchar(ret->padding_type);
 		ft_putstr(s);

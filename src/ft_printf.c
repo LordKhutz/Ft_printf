@@ -3,7 +3,7 @@
 t_printret	*ft_create(void)
 {
 	t_printret	*create;
-
+	t_printret *tmp;
 	create = (t_printret *)malloc(sizeof(t_printret) * 2);
 	create->chars_printed = 0;
 	create->padding_num = 0;
@@ -17,7 +17,9 @@ t_printret	*ft_create(void)
 	create->outvalue = NULL;
 	create->outval_num = 0;
 	create->hashable = 0;
-	return (create);
+	tmp = create;
+	//free(create);
+	return (tmp);
 }
 
 void	ft_inner_printf(t_printret	*ret, va_list argp)
@@ -60,6 +62,7 @@ int			ft_printf(const char *frmt, ...)
 	}
 	format[ret->counter] = '\0';
 	ret->format = format;
+	free(format);
 	ret->counter = 0;
 	ft_inner_printf(ret, argp);
 	return (ret->chars_printed);
