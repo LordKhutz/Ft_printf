@@ -60,6 +60,7 @@ void	ft_conversions(t_printret *ret, va_list argp)
         }
         digits[i] = '\0';
         ret->padding_num = ft_atoi(digits);
+        free(digits);
     }
     if (ret->format[ret->counter] == '.' && !(ft_isalpha(ret->format[ret->counter])))
         ft_precision(ret, argp);
